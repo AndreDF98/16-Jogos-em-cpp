@@ -97,12 +97,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_mixer-2.0.4\include;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_image-2.0.5\include;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2-2.0.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_ttf-2.0.15\include;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_mixer-2.0.4\include;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_image-2.0.5\include;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2-2.0.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_mixer-2.0.4\lib\x64;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_image-2.0.5\lib\x64;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2-2.0.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_ttf-2.0.15\lib\x64;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_mixer-2.0.4\lib\x64;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2_image-2.0.5\lib\x64;C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\SDL2-2.0.10\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -141,6 +141,7 @@
     <ClCompile Include="CarRacing.cpp" />
     <ClCompile Include="DoodleJump.cpp" />
     <ClCompile Include="launcher.cpp" />
+    <ClCompile Include="Mahjong.cpp" />
     <ClCompile Include="Minesweeper.cpp" />
     <ClCompile Include="NetWalk.cpp" />
     <ClCompile Include="Outrun.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="Tetris.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Tron.cpp" />
     <ClCompile Include="Xonix.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +158,7 @@
     <ClInclude Include="CarRacing.h" />
     <ClInclude Include="DoodleJump.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Mahjong.h" />
     <ClInclude Include="Minesweeper.h" />
     <ClInclude Include="NetWalk.h" />
     <ClInclude Include="Outrun.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="Snake.h" />
     <ClInclude Include="Tetris.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Tron.h" />
     <ClInclude Include="Xonix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

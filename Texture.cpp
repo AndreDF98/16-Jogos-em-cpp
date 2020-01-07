@@ -1,14 +1,28 @@
 #include "Texture.h"
 
-#include "SDL.h"
-#include "SDL_image.h"
-#include <iostream>
-
 void Texture::load(SDL_Renderer* renderer, const char* path)
 {
 	SDL_Surface* tempSurface = IMG_Load(path);
 	tex = SDL_CreateTextureFromSurface(renderer, tempSurface);
 	SDL_FreeSurface(tempSurface);
+}
+
+void Texture::loadFont(SDL_Renderer* renderer, const char* path, int size,const char* text, SDL_Color color)
+{
+	TTF_Font* font = TTF_OpenFont(path, size);
+	SDL_Surface* tempSurface = TTF_RenderText_Solid(font, text, color);
+	tex = SDL_CreateTextureFromSurface(renderer, tempSurface);
+	SDL_FreeSurface(tempSurface);
+
+	int texW = 0, texH = 0;
+	getTexture(NULL, NULL, &texW, &texH);
+	srcRect.w = destRect.w = texW;
+	srcRect.h = destRect.h = texH;
+}
+
+void Texture::getTexture(Uint32* x, int* y, int* w, int* h)
+{
+	SDL_QueryTexture(tex, x, y, w, h);
 }
 
 void Texture::draw(SDL_Renderer* renderer)

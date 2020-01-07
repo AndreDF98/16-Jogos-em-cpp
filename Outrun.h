@@ -2,8 +2,6 @@
 
 #include "Game.h"
 
-#include <vector>
-
 class Outrun : public Game
 {
 

@@ -9,6 +9,8 @@
 #include "Xonix.h"
 #include "Bejeweled.h"
 #include "NetWalk.h"
+#include "Mahjong.h"
+#include "Tron.h"
 
 Game* game = nullptr;
 
@@ -16,7 +18,7 @@ int gameChoose;
 
 int main(int argc, char* argv[])
 {
-	gameChoose = 11;
+	gameChoose = 13;
 
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
@@ -69,6 +71,14 @@ int main(int argc, char* argv[])
 	case (11):
 		game = new NetWalk();
 		game->init("NetWalk", 390, 390, false);
+		break;
+	case (12):
+		game = new Mahjong();
+		game->init("Mahjong", 740, 570, false);
+		break;
+	case (13):
+		game = new Tron();
+		game->init("Tron", 600, 480, false);
 		break;
 	default:
 		break;

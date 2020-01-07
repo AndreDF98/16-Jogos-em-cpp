@@ -4,57 +4,12 @@ SDL_Renderer* Mahjong::renderer = nullptr;
 
 SDL_Event Mahjong::event;
 
-struct Vector
-{
-	int x, y, z;
-
-	Vector(int a, int b, int c)
-	{
-		x = a;
-		y = b;
-		z = c;
-	}
-
-	Vector& operator=(const Vector& a)
-	{
-		x = a.x;
-		y = a.y;
-		z = a.z;
-		return *this;
-	}
-
-	Vector operator+(const Vector& a) const
-	{
-		return Vector(a.x + x, a.y + y, a.z + z);
-	}
-
-	Vector operator-(const Vector& a) const
-	{
-		return Vector(a.x - x, a.y - y, a.z - z);
-	}
-
-	Vector operator*(const Vector& a) const
-	{
-		return Vector(a.x * x, a.y * y, a.z * z);
-	}
-
-	Vector operator*(int a) const
-	{
-		return Vector(a * x, a * y, a * z);
-	}
-
-	bool operator==(const Vector& a) const
-	{
-		return (x == a.x && y == a.y && z == a.z);
-	}
-
-};
-Vector v1 = { NULL, NULL, NULL }; Vector v2 = { NULL, NULL, NULL };
+Vector3i v1 = { NULL, NULL, NULL }; Vector3i v2 = { NULL, NULL, NULL };
 
 int field[50][50][50] = { 0 };
 
 int& f(int x, int y, int z) { return field[y + 2][x + 2][z]; }
-int& f(Vector v) { return f(v.x, v.y, v.z); }
+int& f(Vector3i v) { return f(v.x, v.y, v.z); }
 
 bool isOpen(int x, int y, int z)
 {
@@ -134,11 +89,11 @@ void Mahjong::init(const char* title, int width, int height, bool fullscreen)
 	//shuffle
 	for (int k = 1;; k++)
 	{
-		std::vector<Vector> opens;
+		std::vector<Vector3i> opens;
 		for (int z = 0; z < 10; z++)
 			for (int y = 0; y < 18; y++)
 				for (int x = 0; x < 30; x++)
-					if (f(x, y, z) > 0 && isOpen(x, y, z)) opens.push_back(Vector(x, y, z));
+					if (f(x, y, z) > 0 && isOpen(x, y, z)) opens.push_back(Vector3i(x, y, z));
 
 		int n = int(opens.size());
 		if (n < 2) break;
@@ -191,7 +146,7 @@ void Mahjong::handleEvents()
 					for (int i = 0; i < 2; i++)
 						for (int j = 0; j < 2; j++)
 							if (f(x - i, y - j, z) > 0 && isOpen(x - i, y - j, z))
-								v1 = Vector(x - i, y - j, z);
+								v1 = Vector3i(x - i, y - j, z);
 
 					if (v1 == v2) continue;
 

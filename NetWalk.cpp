@@ -6,59 +6,16 @@ SDL_Event NetWalk::event;
 
 const int N = 6;
 
-struct Vector
-{
-	int x, y;
+Vector2i Up = { 0, -1 };
+Vector2i Down = { 0, 1 };
+Vector2i Right = { 1, 0 };
+Vector2i Left = { -1, 0 };
 
-	Vector(int a, int b)
-	{
-		x = a;
-		y = b;
-	}
-
-	Vector& operator=(const Vector& a)
-	{
-		x = a.x;
-		y = a.y;
-		return *this;
-	}
-
-	Vector operator+(const Vector& a) const
-	{
-		return Vector(a.x + x, a.y + y);
-	}
-
-	Vector operator-(const Vector& a) const
-	{
-		return Vector(a.x - x, a.y - y);
-	}
-
-	Vector operator*(const Vector& a) const
-	{
-		return Vector(a.x * x, a.y * y);
-	}
-
-	Vector operator*(int a) const
-	{
-		return Vector(a * x, a * y);
-	}
-
-	bool operator==(const Vector& a) const
-	{
-		return (x == a.x && y == a.y);
-	}
-};
-
-Vector Up = { 0, -1 };
-Vector Down = { 0, 1 };
-Vector Right = { 1, 0 };
-Vector Left = { -1, 0 };
-
-Vector DIR[4] = { Up, Right, Down, Left };
+Vector2i DIR[4] = { Up, Right, Down, Left };
 
 struct pipe
 {
-	std::vector<Vector> dirs;
+	std::vector<Vector2i> dirs;
 	int orientation;
 	bool on;
 	float angle;
@@ -74,7 +31,7 @@ struct pipe
 			else if (dirs[i] == Left) dirs[i] = Up;
 	}
 
-	bool isConnected(Vector dir)
+	bool isConnected(Vector2i dir)
 	{
 		for (auto d : dirs)
 			if (d == dir) return true;
@@ -83,8 +40,8 @@ struct pipe
 
 } grid[N][N];
 
-pipe& cell(Vector v) { return grid[v.x][v.y]; }
-bool isOut(Vector v)
+pipe& cell(Vector2i v) { return grid[v.x][v.y]; }
+bool isOut(Vector2i v)
 {
 	SDL_Rect a;
 	SDL_Rect b;
@@ -103,14 +60,14 @@ bool isOut(Vector v)
 
 void generatePuzzle()
 {
-	std::vector<Vector> nodes;
-	nodes.push_back(Vector(rand() % N, rand() % N));
+	std::vector<Vector2i> nodes;
+	nodes.push_back(Vector2i(rand() % N, rand() % N));
 
 	while (!nodes.empty())
 	{
 		int n = rand() % nodes.size();
-		Vector v = nodes[n];
-		Vector d = DIR[rand() % 4];
+		Vector2i v = nodes[n];
+		Vector2i d = DIR[rand() % 4];
 
 		if (cell(v).dirs.size() == 3) { nodes.erase(nodes.begin() + n); continue; }
 		if (cell(v).dirs.size() == 2) if (rand() % 50) continue;
@@ -128,7 +85,7 @@ void generatePuzzle()
 	}
 }
 
-void drop(Vector v)
+void drop(Vector2i v)
 {
 	if (cell(v).on) return;
 	cell(v).on = true;
@@ -252,7 +209,7 @@ void NetWalk::handleEvents()
 					for (int j = 0; j < N; j++)
 						grid[j][i].on = 0;
 
-				drop(Vector(3, 3));
+				drop(Vector2i(3, 3));
 			}
 			click = false;
 		}

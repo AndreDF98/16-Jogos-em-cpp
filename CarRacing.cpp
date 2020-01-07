@@ -26,8 +26,8 @@ struct Car
 		x += sin(angle) * speed;
 		y -= cos(angle) * speed;
 
-		float tx = points[n][0];
-		float ty = points[n][1];
+		float tx = float(points[n][0]);
+		float ty = float(points[n][1]);
 
 		float beta = angle - atan2(tx - x, -ty + y);
 		if (sin(beta) < 0) angle += 0.08f; else angle -= 0.08f;
@@ -188,8 +188,8 @@ void CarRacing::update()
 	for (int i = 0; i < N; i++)
 		for (int j = 0; j < N; j++)
 		{
-			int dx = cars[i].x - cars[j].x;
-			int dy = cars[i].y - cars[j].y;
+			int dx = int(cars[i].x - cars[j].x);
+			int dy = int(cars[i].y - cars[j].y);
 			if (dx * dx + dy * dy < 4 * R * R)
 			{
 				cars[i].x += dx / 10;
