@@ -11,6 +11,7 @@
 #include "NetWalk.h"
 #include "Mahjong.h"
 #include "Tron.h"
+#include "Chess.h"
 
 Game* game = nullptr;
 
@@ -18,7 +19,7 @@ int gameChoose;
 
 int main(int argc, char* argv[])
 {
-	gameChoose = 13;
+	gameChoose = 14;
 
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
@@ -79,6 +80,10 @@ int main(int argc, char* argv[])
 	case (13):
 		game = new Tron();
 		game->init("Tron", 600, 480, false);
+		break;
+	case (14):
+		game = new Chess();
+		game->init("Chess", 453, 453, false);
 		break;
 	default:
 		break;

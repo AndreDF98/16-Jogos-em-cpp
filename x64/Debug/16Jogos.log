@@ -1,2 +1,8 @@
-﻿  Tron.cpp
+﻿  Chess.cpp
+C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\16Jogos\16Jogos\Chess.cpp(182,17): warning C4244:  '=': conversão de 'int' para 'float', possível perda de dados
+C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\16Jogos\16Jogos\Chess.cpp(183,17): warning C4244:  '=': conversão de 'int' para 'float', possível perda de dados
+C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\16Jogos\16Jogos\Chess.cpp(212,34): warning C4244:  '=': conversão de 'float' para 'int', possível perda de dados
+  launcher.cpp
+  Gerando Código...
+C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\16Jogos\16Jogos\Chess.cpp(213,34): warning C4244:  '=': conversão de 'float' para 'int', possível perda de dados
   16Jogos.vcxproj -> C:\Users\andre\Desktop\UFU\Outros Projetos\C++\SDL\16Jogos\x64\Debug\16Jogos.exe
