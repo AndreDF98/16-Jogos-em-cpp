@@ -12,6 +12,7 @@
 #include "Mahjong.h"
 #include "Tron.h"
 #include "Chess.h"
+#include "Volleyball.h"
 
 Game* game = nullptr;
 
@@ -19,7 +20,7 @@ int gameChoose;
 
 int main(int argc, char* argv[])
 {
-	gameChoose = 14;
+	gameChoose = 15;
 
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
@@ -84,6 +85,10 @@ int main(int argc, char* argv[])
 	case (14):
 		game = new Chess();
 		game->init("Chess", 453, 453, false);
+		break;
+	case (15):
+		game = new Volleyball();
+		game->init("Volleyball", 800, 600, false);
 		break;
 	default:
 		break;
