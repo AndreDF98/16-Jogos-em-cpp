@@ -13,20 +13,34 @@
 #include "Tron.h"
 #include "Chess.h"
 #include "Volleyball.h"
+#include "Asteroids.h"
+#include "chooseGame.h"
 
 Game* game = nullptr;
+
+chooseGame* menu;
 
 int gameChoose;
 
 int main(int argc, char* argv[])
 {
-	gameChoose = 15;
+	gameChoose = 16;
 
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
 
 	Uint32 frameStart;
 	int frameTime;
+
+	menu = new chooseGame();
+	menu->init("16 Games With C++ and SDL", 800, 600, false);
+	while (menu->running())
+	{
+		menu->handleEvents();
+		menu->update();
+		menu->render();
+	}
+	menu->clean();
 
 	switch (gameChoose)
 	{
@@ -89,6 +103,10 @@ int main(int argc, char* argv[])
 	case (15):
 		game = new Volleyball();
 		game->init("Volleyball", 800, 600, false);
+		break;
+	case (16):
+		game = new Asteroids();
+		game->init("Asteroids", 1200, 800, false);
 		break;
 	default:
 		break;

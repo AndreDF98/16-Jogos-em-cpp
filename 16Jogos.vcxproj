@@ -137,9 +137,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Arkanoid.cpp" />
+    <ClCompile Include="Asteroids.cpp" />
     <ClCompile Include="Bejeweled.cpp" />
     <ClCompile Include="CarRacing.cpp" />
     <ClCompile Include="Chess.cpp" />
+    <ClCompile Include="chooseGame.cpp" />
     <ClCompile Include="DoodleJump.cpp" />
     <ClCompile Include="launcher.cpp" />
     <ClCompile Include="Mahjong.cpp" />
@@ -156,9 +158,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arkanoid.h" />
+    <ClInclude Include="Asteroids.h" />
     <ClInclude Include="Bejeweled.h" />
     <ClInclude Include="CarRacing.h" />
     <ClInclude Include="Chess.h" />
+    <ClInclude Include="chooseGame.h" />
     <ClInclude Include="DoodleJump.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Mahjong.h" />
