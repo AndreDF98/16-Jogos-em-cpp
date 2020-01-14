@@ -2,6 +2,8 @@
 
 #include "Game.h"
 
+#include <string>
+
 class chooseGame : public Game
 {
 
@@ -14,7 +16,7 @@ public:
 	void render() override;
 	void clean() override;
 
-	bool isIn(Texture* t, Vector2i pos);
+	int gameChoose = 0;
 
 	bool running() override
 	{
@@ -29,6 +31,13 @@ private:
 	bool isPaused;
 	SDL_Window* window;
 	Mix_Music* music;
+
+	Texture* bg;
+	Texture* button[16];
+
+	Vector2i pos = {0, 0};
+
+	bool isIn(Texture* t, Vector2i pos);
 
 };
 

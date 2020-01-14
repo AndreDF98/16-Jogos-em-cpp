@@ -24,7 +24,6 @@ int gameChoose;
 
 int main(int argc, char* argv[])
 {
-	gameChoose = 16;
 
 	const int FPS = 60;
 	const int frameDelay = 1000 / FPS;
@@ -33,13 +32,16 @@ int main(int argc, char* argv[])
 	int frameTime;
 
 	menu = new chooseGame();
-	menu->init("16 Games With C++ and SDL", 800, 600, false);
+	menu->init("16 Games With C++ and SDL", 720, 625, false);
 	while (menu->running())
 	{
 		menu->handleEvents();
 		menu->update();
 		menu->render();
 	}
+
+	gameChoose = menu->gameChoose;
+
 	menu->clean();
 
 	switch (gameChoose)
@@ -111,27 +113,29 @@ int main(int argc, char* argv[])
 	default:
 		break;
 	}
-	
 
-	while (game->running())
+	if (gameChoose > 0)
 	{
-
-		frameStart = SDL_GetTicks();
-
-		game->handleEvents();
-		game->update();
-		game->render();
-
-		frameTime = SDL_GetTicks() - frameStart;
-		
-		if (frameDelay > frameTime)
+		while (game->running())
 		{
-			SDL_Delay(frameDelay - frameTime);
+
+			frameStart = SDL_GetTicks();
+
+			game->handleEvents();
+			game->update();
+			game->render();
+
+			frameTime = SDL_GetTicks() - frameStart;
+
+			if (frameDelay > frameTime)
+			{
+				SDL_Delay(frameDelay - frameTime);
+			}
+
 		}
 
+		game->clean();
 	}
-
-	game->clean();
 
 	return 0;
 }

@@ -52,7 +52,52 @@ void chooseGame::init(const char* title, int width, int height, bool fullscreen)
 		isRunning = false;
 	}
 
+	bg = new Texture();
+	bg->load(renderer, "assets/menu/background.png");
+	bg->srcRect.x =bg->srcRect.y = 0;
+	bg->destRect.x = bg->destRect.y = 0;
+	bg->srcRect.w =bg->destRect.w = 720;
+	bg->srcRect.h =bg->destRect.h = 625;
 
+	std::string temp;
+
+	for (int i = 0; i < 16; i++)
+	{
+		button[i] = new Texture();
+		
+		temp.append("assets/menu/button");
+		temp.append(std::to_string(i + 1));
+		temp.append(".png");
+		const char* path = temp.c_str();
+		button[i]->load(renderer, path);
+
+		button[i]->srcRect.x = button[i]->srcRect.y = 0;
+		button[i]->srcRect.w = button[i]->destRect.w = 200;
+		button[i]->srcRect.h = button[i]->destRect.h = 60;
+
+		button[i]->setAlpha(0);
+		button[i]->setColor(120, 120, 120);
+
+		temp.clear();
+	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		button[i]->destRect.x = 45;
+		button[i]->destRect.y = (i+1) * (60 + 15) + 70;
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		button[i + 6]->destRect.x = 45 + 200 + 15;
+		button[i + 6]->destRect.y = (i + 1) * (60 + 15) + 70 + 60 * 2 + 15 * 2;
+	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		button[i + 10]->destRect.x = 45 + 200 * 2 + 15 * 2;
+		button[i + 10]->destRect.y = (i + 1) * (60 + 15) + 70;
+	}
 }
 
 void chooseGame::handleEvents()
@@ -73,7 +118,12 @@ void chooseGame::handleEvents()
 		{
 			if (event.button.button == SDL_BUTTON_LEFT)
 			{
-
+				for (int i = 0; i < 16; i++)
+					if (isIn(button[i], pos))
+					{
+						gameChoose = i + 1;
+						isRunning = false;
+					}
 			}
 		}
 	}
@@ -81,14 +131,21 @@ void chooseGame::handleEvents()
 
 void chooseGame::update()
 {
+	SDL_GetMouseState(&pos.x, &pos.y);
 
+	for (int i = 0; i < 16; i++)
+		if (isIn(button[i], pos))
+			button[i]->setColor(255, 255, 255);
+		else button[i]->setColor(120, 120, 120);
 }
 
 void chooseGame::render()
 {
 	SDL_RenderClear(renderer);
 
+	bg->draw(renderer);
 
+	for (int i = 0; i < 16; i++) button[i]->draw(renderer);
 
 	SDL_RenderPresent(renderer);
 }
@@ -99,5 +156,5 @@ void chooseGame::clean()
 	SDL_DestroyRenderer(renderer);
 	Mix_Quit();
 	SDL_Quit();
-	std::cout << "Menu Closed." << std::endl;
+	std::cout << "Menu Closed." << std::endl << std::endl;
 }
